@@ -14,19 +14,17 @@ class CategoriesController extends AbstractController
 {
     #[Route('/{slug}', name: 'list')]
     public function list(Categories $category, ProductsRepository $productsRepository, Request $request): Response
-    {   //on va chercher le numero de page dans url
+    {
         $page = $request->query->getInt('page', 1);
 
+        $products = $productsRepository->findProductsPaginated($page, $category->getSlug(), 3);
 
-
-        //On va chercher la liste des produits de la catégorie
-        $products = $productsRepository->findProductsPaginated($page, $category->getSlug(),3);
-
-        return $this->render('categories/list.html.twig', compact('category', 'products'));
-        // Syntaxe alternative
-        // return $this->render('categories/list.html.twig', [
-        //     'category' => $category,
-        //     'products' => $products
-        // ]);
+        $subcategories = $category->getCategories(); // Récupère les sous-catégories
+        // dd($products);
+        return $this->render('categories/list.html.twig', [
+            'category' => $category,
+            'products' => $products,
+            'subcategories' => $subcategories,
+        ]);
     }
 }

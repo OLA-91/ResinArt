@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Categories;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\Query\Expr\Join;
 use Doctrine\Persistence\ManagerRegistry;
 
 /**
@@ -39,20 +40,17 @@ class CategoriesRepository extends ServiceEntityRepository
         }
     }
 
-//    /**
-//     * @return Categories[] Returns an array of Categories objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    /**
+     * @return Categories[] Returns an array of Categories objects
+     */
+    public function findSubCategories(): array
+    {
+        return $this->createQueryBuilder('c')
+            ->join(Categories::class, 'p', Join::WITH, 'c.parent = p.id')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
 
 //    public function findOneBySomeField($value): ?Categories
 //    {

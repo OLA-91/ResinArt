@@ -1,14 +1,33 @@
-<footer class="container-fluid bg-light">
+<footer class="footer" style="height: 300px;">
+    <div class="container h-100 d-flex align-items-center justify-content-center">
         <div class="row">
-        <section class="col">
-        colonne 1
-        </section>
-          <section class="col">
-        colonne 2
-        </section>
-          <section class="col">
-        colonne 3
-        </section>
+            <div class="col-md-6">
+                <div class="text-center mb-4">
+                    <a href="{{ path('app_contact') }}" class="contact">Contact</a>
+                </div>
+                <div class="text-center mb-4">
+                    <a href="{{ path('categories_list', {"slug": 'pierres' }) }}" class="contact">Pierres</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="text-center mb-4">
+                    <a href="{{ path('categories_list', {"slug": 'accessoires' }) }}" class="contact">Accessoires</a>
+                </div>
+                <div class="text-center mb-4">
+                    <a href="{{ path('categories_list', {"slug": 'arts' }) }}" style="color: black;">Art</a>
+                </div>
+            </div>
+        <div class="col-md-12 text-center mt-3">
+                <a href="https://www.instagram.com/resinart.ola/" class="social-icon" style="margin-right: 20px;">
+                    <i class="fab fa-instagram fa-3x fa-fade" style="color: brown;"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100063746029956" class="social-icon" style="margin-right: 20px;">
+                    <i class="fab fa-facebook fa-3x fa-fade" style="color: blue;"></i>
+                </a>
+                <a href="https://fontawesome.com/icons/tiktok?style=brands" class="social-icon">
+                    <i class="fab fa-tiktok fa-3x fa-fade" style="color: black;"></i>
+                </a>
+            </div>
         </div>
-        
-        </footer>
+    </div>
+</footer>

@@ -1,36 +1,113 @@
 {% extends 'base.html.twig' %}
 
-
 {% block body %}
 
-<main class="container">
-<section class="row">
-<div class="col-12">
-<h1>ResinArtOla</h1>
-<p>Bienvenue dans ma boutique</p>
-
-</div>
-
-{% for category in categories %}
-
-
-    {% if category.parent == null %}
-     <div class="col-12"> 
-    <h2>{{ category.name }}</h2>
-    </div> 
-    {% else %}
-    <div class = "col-4">
-            <div class="card h-100" >
-            <div class="card-body">
-                <h3 class="card-title">{{ category.name }}</h3>
-                <a href="{{ path('categories_list' , {slug: category.slug}) }}" class="btn btn-primary">Voir les produits</a>
+    <main class="container">
+        <section class="row">
+            <!-- Carousel Section -->
+            <div class="col-12">
+                <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+                    <!-- Carousel Indicators -->
+                    <div class="carousel-indicators" style="margin-bottom: -100px;">
+                        <img src="{{ asset('assets/uploads/art3.jpeg') }}" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" style="width: 50px; height:50px; border: 2px solid black;" class="active">
+                        <img src="{{ asset('assets/uploads/art2.jpeg') }}" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" style="width: 50px; height:50px; border: 2px solid black;" class="active">
+                        <img src="{{ asset('assets/uploads/art.jpeg') }}" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" style="width: 50px; height:50px; border: 2px solid black;" class="active">
+                    </div>
+                    <!-- Carousel Items -->
+                    <div class="carousel-inner">
+                        <div class="carousel-item active" data-bs-interval="3000">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset('assets/uploads/art3.jpeg') }}" class="carousel-img" alt="Image 1">
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset('assets/uploads/art2.jpeg') }}" class="carousel-img" alt="Image 2">
+                            </div>
+                        </div>
+                        <div class="carousel-item" data-bs-interval="3000">
+                            <div class="d-flex justify-content-center">
+                                <img src="{{ asset('assets/uploads/art.jpeg') }}" class="carousel-img" alt="Image 2">
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">
+                                    Previous
+                                </span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">
+                                    Next
+                                </span>
+                        </button>
+                    </div>
+                </div>
             </div>
+            <!-- End Carousel Section -->
+                
+            <!-- Welcome Message Section -->
+            <div class="col-12 welcome-message-container">
+                <div class="welcome-message">
+                    <p>
+                        Bienvenue dans ma boutique                                                                                                                                                 
+                    </p>
+                </div>
             </div>
-        </div>
-    {% endif %}
-    {% endfor %}
+            <!-- End Welcome Message Section -->
+            <!-- Add spacing between the welcome message and categories -->
+            <div class="col-12" style="height: 200px;"></div>
+        </section>
+        <section style="background-color: rgb(244, 164, 164);" class="p-5">
+            <div class="row">
+                <div class="col-12 text-center py-5"> 
+                    <h2 class="mb-0">
+                        Our Products                                                                                                                                                                                                                                                           
+                    </h2>
+                </div>
+            </div>
+            <div class="row category-container">
+                <div class="col-md-6 col-sm-12 p-0 ">
+                    <div class="pierres section-background d-flex align-items-center w-100">
+                        <a class="w-100 text-dark text-decoration-none m-0" href="{{ path('categories_list', {"slug": 'pierres' }) }}">
+                            <div class="welcome-message">
+                                <p class="m-0">
+                                    Pierres
+                                </p> 
+                            </div>
+                        </a>
+                    </div>
+                    <div class="accessoires section-background d-flex align-items-center w-100">
+                        <a class="w-100 text-dark text-decoration-none m-0" href="{{ path('categories_list', {"slug": 'accessoires' }) }}" >
+                            <div class="welcome-message">
+                                <p class="m-0">
+                                    Accessoires                                                             
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12 p-0 ">
+                    <div class="art section-background d-flex align-items-center  h-100">
+                        <a class="w-100 text-dark text-decoration-none m-0" href="{{ path('categories_list', {"slug": 'arts' }) }}">
+                            <div class="welcome-message">
+                                <p class="m-0">
+                                    Art
+                                </p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <script>// Activate the carousel
+	var myCarousel = document.querySelector('#carouselExampleIndicators');
+	var carousel = new bootstrap.Carousel(myCarousel, {
+	interval: 3000 // Change the interval here (in milliseconds)
+	});
+	</script>
 
-</section>
-</main>
-{% endblock %}
- 
+                        {% endblock %}
+                        

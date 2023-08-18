@@ -1,6 +1,10 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="{{ path('main') }}">e-commerce</a>
+<img class="logo"
+     src="{{ asset('assets/uploads/logo.png')}}"
+     alt="a"
+    >
+	 		<a class="navbar-brand" href="{{ path('main') }}">ResinArt.Ola</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
@@ -9,29 +13,40 @@
 				<li class="nav-item">
 					<a class="nav-link active" aria-current="page" href="{{ path('main') }}">Accueil</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="#">Link</a>
-				</li>
+			
 				<li class="nav-item dropdown">
 					<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-						Dropdown
+						Boutique
 					</a>
 					<ul class="dropdown-menu" aria-labelledby="navbarDropdown">
 						<li>
-							<a class="dropdown-item" href="#">Action</a>
+							<a class="dropdown-item" href="{{ path('categories_list', {"slug": 'arts' }) }}">Arts</a> 
 						</li>
 						<li>
-							<a class="dropdown-item" href="#">Another action</a>
+							<a class="dropdown-item" href="{{ path('categories_list', {"slug": 'pierres' }) }}">Pierres</a>
 						</li>
 						<li><hr class="dropdown-divider"></li>
 						<li>
-							<a class="dropdown-item" href="#">Something else here</a>
+							<a class="dropdown-item" href="{{ path('categories_list', {"slug": 'accessoires' }) }}">Accessoires</a>
 						</li>
 					</ul>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link disabled">Disabled</a>
+					<li class="nav-item">
+					<a class="nav-link" href="#" style="color: rgb(244, 164, 164)";>Qui sommes nous</a>
+					{# Bienvenue dans l'univers captivant de notre atelier de résine artisanale ! Chez nous, la résine prend vie sous des mains habiles et créatives, transformant l'ordinaire en extraordinaire. Notre histoire est celle d'une passion profonde pour l'art et l'artisanat, combinée à une fascination pour les possibilités infinies offertes par la résine.
+
+Notre voyage a débuté avec une simple idée : capturer la beauté éphémère de la nature et des moments précieux dans des pièces intemporelles en résine. Au fil des années, notre équipe dévouée s'est développée, chaque membre apportant son expertise unique et sa vision artistique au processus de création. Chaque pièce que nous créons est le fruit d'une collaboration inspirante, où les idées fusionnent et se transforment en œuvres d'art uniques.
+
+L'essence même de notre atelier réside dans notre approche "fait main". Chaque morceau de résine est soigneusement coulé, chaque détail est minutieusement peaufiné, et chaque finition est réalisée avec le plus grand soin. Nous croyons en l'authenticité et en la valeur de la création artisanale, et cela se reflète dans chaque pièce que nous produisons.
+
+Notre inspiration provient de la nature dans toute sa splendeur, des paysages époustouflants aux fleurs délicates. Chaque création capture un fragment de cette beauté et le transforme en une pièce unique, prête à trouver sa place dans votre vie quotidienne. Que ce soit une pièce fonctionnelle, une œuvre décorative ou un bijou délicat, nos créations en résine portent en elles une histoire à partager.
+
+Nous sommes plus qu'un simple atelier de résine. Nous sommes une communauté d'artistes passionnés, d'artisans dévoués et d'amoureux de la beauté éternelle. Notre objectif ultime est de créer des pièces qui évoquent des émotions, racontent des histoires et créent des liens. Nous sommes ravis de vous inviter à découvrir notre monde artisanal de résine et à vous joindre à nous dans cette aventure créative.
+
+Bienvenue dans notre famille artisanale de résine,
+L'équipe [Nom de votre atelier] #}
 				</li>
+				
 			</ul>
 			<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
 				{% if app.user %}
@@ -44,14 +59,14 @@
                         <a class="nav-link" href="#">Mon compte</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_logout') }}">Me déconnecter</a>
+                        <a class="nav-link" href="{{ path('app_logout') }}"style="color: rgb(244, 164, 164)";>Me déconnecter</a>
                     </li>
                 {% else %}
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_register') }}">M'inscrire</a>
+                        <a class="nav-link" href="{{ path('app_register') }}"style="color: rgb(244, 164, 164)";>M'inscrire</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ path('app_login') }}">Me Connecter</a>
+                        <a class="nav-link" href="{{ path('app_login') }}"style="color: rgb(244, 164, 164)";>Me Connecter</a>
                     </li>
 				{% endif %}
 			</ul>

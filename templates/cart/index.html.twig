@@ -4,7 +4,7 @@
     <main class="container">
         <section class="row">
             <div class="col-12">
-                <h1>Panier</h1>
+                <h1 class="d-flex justify-content-center">Panier</h1>
                 <table class="table">
                     <thead>
                         <tr>
@@ -25,7 +25,7 @@
                                 <td>
                                     <a href="{{ path('cart_add', {id: element.product.id}) }}" class="btn btn-success">+</a>
                                     <a href="{{ path('cart_remove', {id: element.product.id}) }}" class="btn btn-warning">-</a>
-                                    <a href="{{ path('cart_delete', {id: element.product.id}) }}" class="btn btn-danger">Supprimer</a>
+                                    <a href="{{ path('cart_delete', {id: element.product.id}) }}" class="btn btn-pink">Supprimer</a>
                                 </td>
                             </tr>
                         {% else %}
@@ -39,12 +39,16 @@
                             <td colspan="3">Total</td>
                             <td>{{ total / 100 }} €</td>
                             <td>
-                                <a href="{{ path('cart_empty') }}" class="btn btn-danger">Vider</a>
+                                <a href="{{ path('cart_empty') }}" class="btn btn-pink">Vider</a>
                             </td>
                         </tr>
                     </tfoot>
                 </table>
+                <a href="{{ path('app_orders_add') }}" class="d-flex justify-content-center btn btn-pink" >Valider le panier</a>
+               
+<br>
             </div>
-        </section>
+            
+        </section> 
     </main>
 {% endblock %}
