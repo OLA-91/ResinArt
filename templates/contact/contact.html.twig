@@ -3,8 +3,38 @@
 {% block title %}Hello ContactController!{% endblock %}
 
 {% block body %}
-<div>
-    {{ form(formContact) }}
+<div class="container">
+    <h2 class="h3 mb-3 font-weight-normal mt-5">Contact : </h2>
+
+    {{ form_errors(formContact) }}
+    {# {{ form(formContact) }} #}
+
+    
+    {{ form_start(formContact) }}
+        <div class="mb-3">
+            {{ form_label(formContact.firstName) }}
+            {{ form_widget(formContact.firstName) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(formContact.lastName) }}
+            {{ form_widget(formContact.lastName) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(formContact.email) }}
+            {{ form_widget(formContact.email) }}
+        </div>
+        <div id="emailHelp" class="form-text mb-3"> We'll never share your email with anyone else.</div>
+        <div class="mb-3">
+            {{ form_label(formContact.subject) }}
+            {{ form_widget(formContact.subject) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(formContact.message) }}
+            {{ form_widget(formContact.message) }}
+        </div>
+
+        <button type="submit" class="btn btn-lg btn-pink mb-5"> Envoyer </button>
+    {{ form_end(formContact) }}
     
 </div>
 {% endblock %}

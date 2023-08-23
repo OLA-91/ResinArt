@@ -1,7 +1,16 @@
 {% extends '@EasyAdmin/page/content.html.twig' %}
 
-{% block content_title %}The Title of the Page{% endblock %}
+{% block content_title %}
+    <div style="text-align: center;">
+        <h1 style="font-size: 50px;">ResinArt.Ola</h1>
+    </div>
+{% endblock %}
+
 {% block page_actions %}
 {% endblock %}
+
 {% block main %}
+    <div style="text-align: center;">
+        <img src="{{ asset('/assets/uploads/logo.png') }}" alt="ResinArt.Ola Logo">
+    </div>
 {% endblock %}

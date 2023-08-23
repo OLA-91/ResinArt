@@ -33,7 +33,7 @@ class ProductsCrudController extends AbstractCrudController
         return [
             TextField::new('name'),
             TextField::new('slug'),
-            TextEditorField::new('description'),
+            TextField::new('description'),
             NumberField::new('price'),
             AssociationField::new('categories')
                 ->autocomplete()

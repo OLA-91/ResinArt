@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Categories;
+use App\Entity\Contact;
 use App\Entity\Images;
 use App\Entity\Products;
 use App\Entity\Users;
@@ -39,15 +40,27 @@ class DashboardController extends AbstractDashboardController
     public function configureDashboard(): Dashboard
     {
         return Dashboard::new()
-            ->setTitle('ResinArt');
+            ->setTitle('ResinArt.Ola');
     }
 
     public function configureMenuItems(): iterable
     {
         yield MenuItem::linkToDashboard('Dashboard', 'fa fa-home');
+
+        yield MenuItem::section('Contact');
+        yield MenuItem::linkToCrud('Contact', 'fa-solid fa-message', Contact::class);
+
+        yield MenuItem::section('Users');
         yield MenuItem::linkToCrud('Users', 'fas fa-user', Users::class);
-        yield MenuItem::linkToCrud('Products', 'fas fa-list', Products::class);
-        yield MenuItem::linkToCrud('Categories', 'fas fa-list', Categories::class);
-        yield MenuItem::linkToCrud('Images', 'fas fa-list', Images::class);
+
+        yield MenuItem::section('Products');
+        yield MenuItem::linkToCrud('Categories', 'fa-solid fa-tag', Categories::class);
+        yield MenuItem::linkToCrud('Products', 'fa-solid fa-shop', Products::class);
+        
+
+        yield MenuItem::section('Images');
+        yield MenuItem::linkToCrud('Images', 'fa-solid fa-image', Images::class);
+
+
     }
 }

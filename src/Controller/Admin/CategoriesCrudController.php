@@ -22,7 +22,7 @@ class CategoriesCrudController extends AbstractCrudController
             TextField::new('name'),
             TextField::new('slug'),
             NumberField::new('category_order'),
-            AssociationField::new('categories'),
+            AssociationField::new('parent'),
             ImageField::new('image')
                 ->setUploadDir('/public/assets/uploads')
                 ->setUploadedFileNamePattern('[contenthash].[extension]')
