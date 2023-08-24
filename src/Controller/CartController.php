@@ -4,8 +4,10 @@ namespace App\Controller;
 use App\Entity\Products;
 use App\Repository\ProductsRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Uid\Uuid;
 
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
@@ -19,14 +21,15 @@ class CartController extends AbstractController
         $data = [];
         $total = 0;
 
-        foreach($panier as $id => $quantity){
-            $product = $productsRepository->find($id);
-
+        foreach($panier as $cartItem){
+            $product = $productsRepository->find($cartItem['product_id']);
             $data[] = [
                 'product' => $product,
-                'quantity' => $quantity
+                "options" => $cartItem['options'],
+                "uniqueId" => $cartItem['unique_id']
+
             ];
-            $total += $product->getPrice() * $quantity;
+            $total += $product->getPrice(); 
         }
         
         return $this->render('cart/index.html.twig', compact('data', 'total'));
@@ -34,21 +37,22 @@ class CartController extends AbstractController
 
 
     #[Route('/add/{id}', name: 'add')]
-    public function add(Products $product, SessionInterface $session)
+    public function add(Products $product, SessionInterface $session, Request $request)
     {
         //On récupère l'id du produit
         $id = $product->getId();
-
         // On récupère le panier existant
         $panier = $session->get('panier', []);
 
-        // On ajoute le produit dans le panier s'il n'y est pas encore
-        // Sinon on incrémente sa quantité
-        if(empty($panier[$id])){
-            $panier[$id] = 1;
-        }else{
-            $panier[$id]++;
-        }
+        //  On ajoute le produit dans le panier s'il n'y est pas encore
+        //  Sinon on incrémente sa quantité
+        //  PorteClé 
+        $panier[] = [
+            "product_id" => $product->getId(),
+            "options" => $request->request->all(),
+            "unique_id" => Uuid::v1()->jsonSerialize()
+        ];
+        
 
         $session->set('panier', $panier);
         
@@ -82,18 +86,14 @@ class CartController extends AbstractController
     }
 
     #[Route('/delete/{id}', name: 'delete')]
-    public function delete(Products $product, SessionInterface $session)
+    public function delete(string $id, SessionInterface $session)
     {
-        //On récupère l'id du produit
-        $id = $product->getId();
 
         // On récupère le panier existant
         $panier = $session->get('panier', []);
-
-        if(!empty($panier[$id])){
-            unset($panier[$id]);
-        }
-
+        $panier = array_filter($panier, function($cartItem) use($id) {
+            return $cartItem['unique_id'] !== $id;
+        });
         $session->set('panier', $panier);
         
         //On redirige vers la page du panier

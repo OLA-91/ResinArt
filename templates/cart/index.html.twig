@@ -11,7 +11,8 @@
                         <tr>
                             <th>Produit</th>
                             <th>Prix</th>
-                            <th>Quantité</th>
+                            {# <th>Quantité</th> #}
+                            <th>Options</th>
                             <th>Total</th>
                             <th>Action</th>
                         </tr>
@@ -21,12 +22,23 @@
                             <tr>
                                 <td>{{ element.product.name }}</td>
                                 <td>{{ element.product.price / 100 }} €</td>
-                                <td>{{ element.quantity }}</td>
-                                <td>{{ element.quantity * element.product.price / 100 }} €</td>
                                 <td>
-                                    <a href="{{ path('cart_add', {id: element.product.id}) }}" class="btn btn-success">+</a>
-                                    <a href="{{ path('cart_remove', {id: element.product.id}) }}" class="btn btn-warning">-</a>
-                                    <a href="{{ path('cart_delete', {id: element.product.id}) }}" class="btn btn-pink">Supprimer</a>
+                                    <ul>
+                                        {% for item in element.options %}
+                                            {% if item %}
+                                                <li> {{ item }}</li>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </ul>
+                                    
+                                
+                                </td>
+                                {# <td>{{ element.quantity }}</td> #}
+                                <td>{{ element.product.price / 100 }} €</td>
+                                <td>
+                                    {# <a href="{{ path('cart_add', {id: element.uniqueId}) }}" class="btn btn-success">+</a>
+                                    <a href="{{ path('cart_remove', {id: element.uniqueId}) }}" class="btn btn-warning">-</a> #}
+                                    <a href="{{ path('cart_delete', {id: element.uniqueId}) }}" class="btn btn-pink">Supprimer</a>
                                 </td>
                             </tr>
                         {% else %}

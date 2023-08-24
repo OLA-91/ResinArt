@@ -38,20 +38,38 @@
                 <p>{{ product.description }}</p>
                 <p>Catégorie : {{ product.categories.name }}</p>
                 <p>Prix : {{ product.price / 100 }} €</p>
-
-<label for="colorSelect">Choisir la couleur :</label>
-                <select id="colorSelect" name="color">
+            <form action="{{ path('cart_add', {id: product.id}) }}" method="POST">
+                <label class="label mb-3" for="colorSelect">Choisir la couleur :</label><br>
+                <select id="colorSelect" name="color"class="mb-4">
                     <option value="red">Rouge</option>
                     <option value="blue">Bleu</option>
                     <option value="green">Vert</option>
-                 
+                    <option value="red">Blanc</option>
+                    <option value="blue">Noir</option>
+                    <option value="green">Rose</option>
+                    <option value="red">Beige</option>
+                    <option value="blue">Violet</option>
+                    <option value="green">Gris</option>
                 </select>
               <br>
+                <div class="col-lg-6 mt-4">
+                {% if product.categories.id == 44 %}
+                    <label class="label mb-3" for="sizeSelect">Choisir la taille :</label><br>
+                    <select id="sizeSelect" name="size" class="form-select mb-4">
+                        <option value="Rectangle 30*19">Rectangle avec poignéees 30*19</option>
+                        <option value="Rectangle 38*23">Rectangle avec poignéees 38*23</option>
+                        <option value="Set 2 plateau">Set 2 plateau personalisé Rond , Rectangle </option>
+                        <option value="Set un plateau+2 sous tasse">Set un plateau personalisé + 2 sous tasse</option>
+                        <option value="Rond">Rond en cristal 33 cm</option>
 
 
+                    </select>
+                {% endif %}
 
-                <label for="letterSelect">Choisir une lettre :</label>
-                <select id="letterSelect" name="letter">
+                {% if product.categories.id == 43 %}
+                    
+                <label class="label mb-4" for="letterSelect">Choisir une lettre :</label><br>
+                <select id="letterSelect" name="letter" class="mb-4">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -79,18 +97,50 @@
                     <option value="A">Y</option>
                     <option value="B">Z</option>
                     <!-- Ajoutez plus d'options de lettre ici -->
+                     <!-- Champ pour ajouter un texte personnalisé -->
+               
                 </select>
-                <br>
-                <!-- Champ pour ajouter un texte personnalisé -->
-                <label for="customText">Ajouter un texte personnalisé :</label><br>
-                <input type="text" id="customText" name="customText" placeholder="Entrez votre texte ici">
+                {% endif %}
+                 {% if product.categories.id == 47 %}
+                    <label class="label mb-3" for="sizeSelect">Choisir la quantité :</label><br>
+                    <select id="quantitéSelect" name="quantité" class="mb-4">
+                        <option value="50">50 g</option>
+                        <option value="100">100 g</option>
+                    </select>
+                    {% endif %}
+                     {% if product.categories.id == 46 %}
+                    <label class="label mb-3" for="sizeSelect">Choisir la quantité :</label><br>
+                    <select id="quantitéSelect" name="quantité" class="mb-4">
+                        <option value="50">50 g</option>
+                        <option value="100">100 g</option>
+                    </select>
+                    {% endif %}
+                     {% if product.categories.id == 48 %}
+                    <label class="label mb-3" for="sizeSelect">Choisir la quantité :</label><br>
+                    <select id="quantitéSelect" name="quantité" class="mb-4">
+                        <option value="50">50 g</option>
+                        <option value="100">100 g</option>
+                    </select>
+                    {% endif %}
 
-                    <br>
+                <br>   
+                <!-- Champ pour ajouter un texte personnalisé -->
+                <label class="label mb-3" for="customText">Ajouter un texte personnalisé :</label><br>
+                <input type="text" id="customText" name="customText" class="form-control mb-4" placeholder="Entrez votre texte ici">
+                 <br>
+
+
+                    
+
+
                 {% if product.stock > 0 %}
-                    <a href="{{ path('cart_add', {id: product.id}) }}" class="btn btn-pink">Ajouter au panier</a>
+                <!-- Bouton "ajouter au panier" si le produit est en stock-->
+                
+                    <button type="submit" class="btn btn-pink mt-4">Ajouter au panier</button>
                 {% else %}
                     <p class="text-danger">Temporairement en rupture de stock</p>
                 {% endif %}
+            </form>
             </div>
         </section>
     </main>

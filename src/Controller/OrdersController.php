@@ -24,7 +24,7 @@ class OrdersController extends AbstractController
         if($panier === []){
             $this->addFlash('message', 'Votre panier est vide');
             return $this->redirectToRoute('main');
-        }
+        } 
 
         //Le panier n'est pas vide, on crée la commande
         $order = new Orders();
