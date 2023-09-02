@@ -49,6 +49,7 @@ class Users implements UserInterface, PasswordAuthenticatedUserInterface
     private $city;
 
     #[ORM\Column(type: 'boolean')]
+    
     private $is_verified = false;
 
     #[ORM\Column(type: 'string', length: 255, nullable:true)]

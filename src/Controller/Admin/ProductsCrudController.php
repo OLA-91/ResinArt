@@ -37,12 +37,7 @@ class ProductsCrudController extends AbstractCrudController
             NumberField::new('price'),
             AssociationField::new('categories')
                 ->autocomplete()
-                // ->setQueryBuilder(
-                //     fn (QueryBuilder $queryBuilder) => 
-                //     $queryBuilder->getEntityManager()
-                //     ->getRepository(Categories::class)
-                //     ->findSubCategories()
-                // )
+             
                 ,
             NumberField::new('stock'),
             DateField::new('created_at'),

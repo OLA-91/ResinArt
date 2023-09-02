@@ -21,21 +21,26 @@ class RegistrationController extends AbstractController
     #[Route('/inscription', name: 'app_register')]
     public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, UserAuthenticatorInterface $userAuthenticator, UsersAuthenticator $authenticator, EntityManagerInterface $entityManager, SendMailService $mail, JWTService $jwt): Response
     {
-        $user = new Users();
-        $form = $this->createForm(RegistrationFormType::class, $user);
-        $form->handleRequest($request);
+      // Création d'une instance de l'entité Users
+      $user = new Users();
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            // encode the plain password
-            $user->setPassword(
-            $userPasswordHasher->hashPassword(
-                    $user,
-                    $form->get('plainPassword')->getData()
-                )
-            );
+      // Création du formulaire d'inscription
+      $form = $this->createForm(RegistrationFormType::class, $user);
+      $form->handleRequest($request);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+          // Encodage du mot de passe
+          $user->setPassword(
+              $userPasswordHasher->hashPassword(
+                  $user,
+                  $form->get('plainPassword')->getData()
+              )
+          );
+            // Enregistrement de l'utilisateur dans la base de données
 
             $entityManager->persist($user);
             $entityManager->flush();
+
             // do anything else you need here, like send an email
 
             // On génère le JWT de l'utilisateur
@@ -53,7 +58,8 @@ class RegistrationController extends AbstractController
             // On génère le token
             $token = $jwt->generate($header, $payload, $this->getParameter('app.jwtsecret'));
 
-            // On envoie un mail
+        // Envoi d'un courrier électronique avec le token
+
             $mail->send(
                 'no-reply@monsite.net',
                 $user->getEmail(),
@@ -62,12 +68,16 @@ class RegistrationController extends AbstractController
                 compact('user', 'token')
             );
 
+            // Authentification automatique de l'utilisateur
+
             return $userAuthenticator->authenticateUser(
                 $user,
                 $authenticator,
                 $request
             );
         }
+
+         // Rendu du formulaire d'inscription
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),

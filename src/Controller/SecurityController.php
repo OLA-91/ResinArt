@@ -46,7 +46,8 @@ class SecurityController extends AbstractController
     public function forgottenPassword(
         Request $request,
         UsersRepository $usersRepository,
-        TokenGeneratorInterface $tokenGenerator,
+        TokenGeneratorInterface $tokenGenerator,//Si l'e-mail est trouvé dans la base de données,
+        // un token de réinitialisation est généré et envoyé à l'utilisateur par e-mail
         EntityManagerInterface $entityManager,
         SendMailService $mail
     ): Response

@@ -1,7 +1,7 @@
     {% extends 'base.html.twig' %}
 
     {% block title %}Inscription{% endblock %}
-
+ 
     {% block body %}
 
     <section class="container">
@@ -10,10 +10,10 @@
                 <h1>Inscription</h1>
 
             
-
+ 
             {{ form_start(registrationForm) }}
             <fieldset class="mb-3">
-            <legend>Non identité</legend>
+            <legend>identité</legend>
             {{ form_row(registrationForm.lastname) }}
             {{ form_row(registrationForm.firstname) }}
             {{ form_row(registrationForm.email) }}
@@ -34,9 +34,10 @@
             }) }}
             {{ form_row(registrationForm.RGPDConsent) }}
 
-            <button type="submit" class="btn btn-primary btn-lg my-3">M'inscrire</button>
+            <button type="submit" class="btn btn-pink btn-lg my-3">M'inscrire</button>
             <a href="{{ path('app_login') }}" class="btn btn-secondary">Me connecter </a>
         {{ form_end(registrationForm) }}</div>
         </div>
+        </section>
         
     {% endblock %}

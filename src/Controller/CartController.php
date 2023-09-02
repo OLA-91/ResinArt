@@ -12,6 +12,7 @@ use Symfony\Component\Uid\Uuid;
 #[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
 {
+    // Récupère les informations du panier depuis la session, puis les utilise pour afficher les produits ajoutés au panier
     #[Route('/', name: 'index')]
     public function index(SessionInterface $session, ProductsRepository $productsRepository)
     {
@@ -35,7 +36,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', compact('data', 'total'));
     }
 
-
+//récupère l'identifiant du produit à partir de la base de données, puis ajoute ce produit au panier en utilisant la session. Chaque produit ajouté au panier est associé à un identifiant unique généré avec Uuid.
     #[Route('/add/{id}', name: 'add')]
     public function add(Products $product, SessionInterface $session, Request $request)
     {
@@ -44,9 +45,9 @@ class CartController extends AbstractController
         // On récupère le panier existant
         $panier = $session->get('panier', []);
 
-        //  On ajoute le produit dans le panier s'il n'y est pas encore
-        //  Sinon on incrémente sa quantité
-        //  PorteClé 
+        // On ajoute le produit dans le panier s'il n'y est pas encore
+        // Sinon on incrémente sa quantité
+        // PorteClé 
         $panier[] = [
             "product_id" => $product->getId(),
             "options" => $request->request->all(),

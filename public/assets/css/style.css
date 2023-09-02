@@ -151,7 +151,7 @@ td {
     height: 1200px;
 }
 
-@media (max-width: 767px) {
+/* @media (max-width: 767px) {
     .category-container {
         align-items: center;
     }
@@ -161,7 +161,7 @@ td {
     }
 
 
-}
+} */
 
 .footer {
     background-color: rgba(var(--bs-light-rgb));

@@ -19,7 +19,7 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email', EmailType::class, [
+            ->add('email', EmailType::class, [ 
                 'attr' => [
                     'class' => 'form-control'
                 ],
@@ -91,7 +91,7 @@ class RegistrationFormType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Users::class,
+            'data_class' => Users::class, 
         ]);
     }
 }

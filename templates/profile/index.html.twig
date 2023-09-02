@@ -3,7 +3,11 @@
 {% block title %}Hello ProfileController!{% endblock %}
 
 {% block body %}
-<h1 class="d-flex justify-content-center mt-4">Welcome {{ (app.user.lastname)}} {{ (app.user.firstname)}}</h1>
+<h1 class="d-flex justify-content-center mt-4">
+  Welcome
+ {{ (app.user.lastname)}} 
+ {{ (app.user.firstname)}}
+</h1>
 <div class="container">
 {{ form_start(form) }}
         {{ form_label(form.email) }}

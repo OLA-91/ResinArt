@@ -15,8 +15,9 @@ use Symfony\Component\Routing\Annotation\Route;
 class OrdersController extends AbstractController
 {
     #[Route('/ajout', name: 'add')]
+    //    public function add(Request $request, SessionInterface $session): Response {
     public function add(SessionInterface $session, ProductsRepository $productsRepository, EntityManagerInterface $em): Response
-    {
+    {   //recupe panier
         $this->denyAccessUnlessGranted('ROLE_USER');
 
         $panier = $session->get('panier', []);
@@ -38,19 +39,21 @@ class OrdersController extends AbstractController
             $orderDetails = new OrdersDetails();
 
             // On va chercher le produit
-            $product = $productsRepository->find($item);
+            $product = $productsRepository->find($quantity['product_id']);
             
             $price = $product->getPrice();
 
             // On crée le détail de commande
             $orderDetails->setProducts($product);
             $orderDetails->setPrice($price);
-            $orderDetails->setQuantity($quantity);
+
+            // dd($quantity);
+            // $orderDetails->setQuantity($quantity);
 
             $order->addOrdersDetail($orderDetails);
         }
 
-        // On persiste et on flush
+        // On persiste et on flush(crée les requette et les exécute)
         $em->persist($order);
         $em->flush();
 

@@ -10,7 +10,7 @@ class OrdersDetails
 {
 
 
-    #[ORM\Column]
+    #[ORM\Column(nullable: true)]
     private ?int $quantity = null;
 
     #[ORM\Column]
