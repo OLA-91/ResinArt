@@ -60,7 +60,7 @@ class CartController extends AbstractController
         //On redirige vers la page du panier
         return $this->redirectToRoute('cart_index');
     }
-
+//supprimer un produit du panier. Si le produit est présent en quantité supérieure à 1 dans le panier, sa quantité est décrémentée. Sinon, il est complètement retiré du panier.
     #[Route('/remove/{id}', name: 'remove')]
     public function remove(Products $product, SessionInterface $session)
     {
@@ -85,7 +85,7 @@ class CartController extends AbstractController
         //On redirige vers la page du panier
         return $this->redirectToRoute('cart_index');
     }
-
+// supprimer un produit du panier en utilisant son identifiant unique généré avec Uuid.
     #[Route('/delete/{id}', name: 'delete')]
     public function delete(string $id, SessionInterface $session)
     {
@@ -100,7 +100,7 @@ class CartController extends AbstractController
         //On redirige vers la page du panier
         return $this->redirectToRoute('cart_index');
     }
-
+//vider complètement le panier en supprimant toutes les données relatives au panier de la session.
     #[Route('/empty', name: 'empty')]
     public function empty(SessionInterface $session)
     {
